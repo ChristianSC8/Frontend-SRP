@@ -1,8 +1,19 @@
 import './sidebar.css'
 import react from "../../assets/react.svg";
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function sidebar({isSidebarClose}){
+
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [isDropdowntwoOpen, setDropdowntwoOpen] = useState(false);
+
+    const toggleDropdown = () => {
+      setDropdownOpen(!isDropdownOpen);
+    };
+    const toggleDropdowntwo = () => {
+        setDropdowntwoOpen(!isDropdowntwoOpen);
+    };
 
     return (
         <>
@@ -47,13 +58,94 @@ function sidebar({isSidebarClose}){
                                     </Link>
                                 </li>
                                 <li className="item">
+                                    <Link to={"start"}className="link">
+                                        <div className="link-icon">
+                                            <i className='bx bxs-dashboard'></i>
+                                        </div>
+                                        <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Reserva</span>
+                                    </Link>
+                                </li>
+                                <li className="item ">
                                     <Link to={'package'} className="link">
                                         <div className="link-icon">
                                             <i className='bx bxs-dashboard'></i>
                                         </div>
-                                        <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Dashboard</span>
+                                        <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Paquetes</span>
                                     </Link>
                                 </li>
+                                {/* dropdoen */}
+                                <li className="item " >
+                                    <a className="link" onClick={toggleDropdown}>
+                                        <div className="link-icon">
+                                            <i className='bx bxs-server'></i>
+                                        </div>
+                                        <div className="text-icon-rotate" >
+                                            <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Pago</span>
+                                            <i className={`bx bx-chevron-right dropdown-open ${isDropdownOpen? 'rotate-icon' : ''}`}></i>
+                                        </div>
+                                    </a>
+                                    <div className={`dropdown ${isDropdownOpen ? 'active-dropdown' : ''} ${isSidebarClose ? 'dropdown ' : 'remov-margin'}`}>
+                                        <ul className={`dropdown-option ${isDropdownOpen ? 'visible-dropdown' : ''}`}>
+                                            <li className="option">
+                                                <div className="option-icon">
+                                                    <i className='bx bxs-doughnut-chart' ></i>
+                                                </div>
+                                                <span className="text-option">Categoria</span>
+                                            </li>
+                                            <li className="option">
+                                                <div className="option-icon">
+                                                    <i className='bx bxs-speaker' ></i>
+                                                </div>
+                                                <span className="text-option">Producto</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li className="item ">
+                                    <Link to={'package'} className="link">
+                                        <div className="link-icon">
+                                            <i className='bx bxs-dashboard'></i>
+                                        </div>
+                                        <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Usuarios</span>
+                                    </Link>
+                                </li>
+                                {/* dropdoen */}
+                                <li className="item " >
+                                    <a className="link" onClick={toggleDropdowntwo}>
+                                        <div className="link-icon">
+                                            <i className='bx bxs-server'></i>
+                                        </div>
+                                        <div className="text-icon-rotate" >
+                                            <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Pago</span>
+                                            <i className={`bx bx-chevron-right dropdown-open ${isDropdowntwoOpen? 'rotate-icon' : ''}`}></i>
+                                        </div>
+                                    </a>
+                                    <div className={`dropdown ${isDropdowntwoOpen ? 'active-dropdown' : ''} ${isSidebarClose ? 'dropdown ' : 'remov-margin'}`}>
+                                        <ul className={`dropdown-option ${isDropdowntwoOpen ? 'visible-dropdown' : ''}`}>
+                                            <li className="option">
+                                                <div className="option-icon">
+                                                    <i className='bx bxs-doughnut-chart' ></i>
+                                                </div>
+                                                <span className="text-option">Categoria</span>
+                                            </li>
+                                            <li className="option">
+                                                <div className="option-icon">
+                                                    <i className='bx bxs-speaker' ></i>
+                                                </div>
+                                                <span className="text-option">Producto</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+
+
+
+
+
+
+
+
                             </ul>
                         </div>
                     </div>

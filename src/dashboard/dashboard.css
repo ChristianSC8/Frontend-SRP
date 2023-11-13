@@ -47,6 +47,7 @@
     /* border: 2px solid greenyellow; */
     display: flex;
     align-items: center;
+    border-bottom: 1px solid #E5E9F2;
 }
 
 
@@ -57,5 +58,5 @@
     /* border: 2px green solid; */
     overflow-y: auto;
     /* padding: 10px; */
-    background: #F1F4F8;
+    /* background: #F1F4F8; */
 }
