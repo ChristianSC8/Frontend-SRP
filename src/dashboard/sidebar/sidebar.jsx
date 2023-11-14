@@ -86,18 +86,18 @@ function sidebar({isSidebarClose}){
                                     </a>
                                     <div className={`dropdown ${isDropdownOpen ? 'active-dropdown' : ''} ${isSidebarClose ? 'dropdown ' : 'remov-margin'}`}>
                                         <ul className={`dropdown-option ${isDropdownOpen ? 'visible-dropdown' : ''}`}>
-                                            <li className="option">
+                                            <Link to={'accounts'} className="option">
                                                 <div className="option-icon">
                                                     <i className='bx bxs-doughnut-chart' ></i>
                                                 </div>
-                                                <span className="text-option">Categoria</span>
-                                            </li>
-                                            <li className="option">
+                                                <span className="text-option">Cuentas</span>
+                                            </Link>
+                                            <Link to={'paymentstate'} className="option">
                                                 <div className="option-icon">
                                                     <i className='bx bxs-speaker' ></i>
                                                 </div>
-                                                <span className="text-option">Producto</span>
-                                            </li>
+                                                <span className="text-option">Estados</span>
+                                            </Link>
                                         </ul>
                                     </div>
                                 </li>

@@ -240,6 +240,7 @@
     margin-bottom: 4px;
     /* background: orange; */
     color: #707070;
+    text-decoration: none;
 }
 .option-icon i{
     font-size: 23px;

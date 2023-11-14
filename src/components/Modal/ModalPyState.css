@@ -1,0 +1,106 @@
+
+.container-modal-state{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(189, 185, 185);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.modal-state{
+    width: 540px;
+    height: 400px;
+    border: 1px solid;
+    border-radius: 10px;
+    transform: translateY(-60px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background: #FFF;
+}
+.content-modal-state{
+    width: 100%;
+    height: 100%;
+    /* background: orange; */
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px;
+}
+.content-body-state{
+    width: 100%;
+    /* background: palegreen; */
+}
+.header-state{
+    width: 100%;
+    height: 25px;
+    /* background: orange; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title-state-pay{
+    font-size: 20px;
+}
+.header-state ion-icon{
+    font-size: 30px;
+    transform: translateX(5px);
+    cursor: pointer;
+}
+.input-name-state{
+    width: 100%;
+    height: 42px;
+    background: green;
+    position: relative;
+    margin-top: 35px;
+}
+.input-name-state input{
+    width: 100%;
+    height: 100%;
+}
+.title-name-state{
+    position: absolute; 
+    top: -25px;
+    left: 0;
+}
+
+.input-description-state{
+    width: 100%;
+    height: 140px;
+    background: green;
+    position: relative;
+    margin-top: 35px;
+
+}
+.input-description-state textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
+.title-description-state{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+.futter-state{
+    width: 100%;
+    height: 45px;
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+}
+.button-save-state{
+    width: 120px;
+    height: 100%;
+}
+.button-cancel-state{
+    width: 120px;
+    height: 100%;
+}

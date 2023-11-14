@@ -1,6 +1,8 @@
 import App from "../App"
+import Accounts from "../Pages/accounts/Accounts"
 import Home from "../Pages/home/Home"
 import Package from "../Pages/package/Package"
+import PaymentState from "../Pages/paymentState/paymentState"
 import Dashboard from "../dashboard/dashboard"
 
 const routes = [
@@ -25,8 +27,12 @@ const routes = [
                 element: <Package />
             },
             {
-                path: "loro",
-                element: <div>hOME</div>
+                path: "paymentstate",
+                element: <PaymentState />
+            },
+            {
+                path: "accounts",
+                element: <Accounts />
             }
         ]
     }
