@@ -6,7 +6,7 @@ const ModalPackage = ({ state, setState, mode }) => {
         setState(false);
     };
 
-    return (
+    return ( 
         state && (
             <>
                 <div className="container-modal">
@@ -18,24 +18,18 @@ const ModalPackage = ({ state, setState, mode }) => {
                                 </div>
                                 <div className="select-image">
                                     
-                                </div>
+                                </div> 
                             </div>
                         </div>
-
-
-
-
-
-
-
-
                         <div className="content-infoInpts">
                             <div className="inputs-forms">
                                 <div className="header-content">
                                     <div className="header-transform">
                                         <span className="title-content">{mode === 'create' ? 'Nuevo Paquete':'update'}</span>
-                                        <button className="button-close" onClick={closeModal}>
-                                            <ion-icon name="close-outline" className="ico-close"></ion-icon>
+                                        <button className="button-close-package" type='button' onClick={closeModal}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M368 368L144 144M368 144L144 368"/>
+                                            </svg>
                                         </button>
                                     </div>
                                 </div>
@@ -48,6 +42,10 @@ const ModalPackage = ({ state, setState, mode }) => {
                                     <div className="input-price">
                                         <input type="text"/>
                                         <label className="title-price">Precio</label>
+                                    </div>
+                                    <div className="input-time">
+                                        <input type="text"/>
+                                        <label className="title-time">Tiempo</label>
                                     </div>
                                     <div className="input-state">
                                         <input type="text"/>
@@ -66,7 +64,7 @@ const ModalPackage = ({ state, setState, mode }) => {
                                     : 
                                     (<button type="button" className="button-save">Editar</button>)
                                 }
-                                <button onClick={closeModal} className="button-cancel">Cancelar</button>
+                                <button type="button" onClick={closeModal} className="button-cancel">Cancelar</button>
                             </div>
                         </div>
                     </form>

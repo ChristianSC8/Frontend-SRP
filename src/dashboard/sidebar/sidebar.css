@@ -97,9 +97,10 @@
     align-items: center;
     justify-content: center;
 }
-.input-icon i {
-    font-size: 25px;
-    transform: translateX(2px);
+.input-icon svg{
+    width: 28px;
+    height: 28px;
+    color: #707070;
 }
 
 
@@ -164,8 +165,9 @@
     align-items: center;
     justify-content: center;
 }
-.link-icon i{
-    font-size: 25px;
+.link-icon svg{
+    width: 26px;
+    height: 26px;
 }
 
 .link-text{
@@ -242,8 +244,9 @@
     color: #707070;
     text-decoration: none;
 }
-.option-icon i{
-    font-size: 23px;
+.option-icon svg{
+    width: 26px;
+    height: 26px;
     /* color: #000; */
 }
 .text-option{

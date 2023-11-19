@@ -16,8 +16,10 @@ function ModalPyState({statePay, setStatePay, modePay}){
                             <div className="content-body-state">
                                 <div className="header-state">
                                     <span className="title-state-pay">{modePay === 'create' ? 'Nuevo Paquete':'update'}</span>
-                                    <button className="button-close" onClick={closeModalPay}>
-                                        <ion-icon name="close-outline" className="close-icon-state"></ion-icon>
+                                    <button className="button-close-pay" onClick={closeModalPay}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M368 368L144 144M368 144L144 368"/>
+                                        </svg>
                                     </button>
                                 </div>
                                 <div className="input-name-state">
@@ -39,7 +41,7 @@ function ModalPyState({statePay, setStatePay, modePay}){
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </>
         )
         

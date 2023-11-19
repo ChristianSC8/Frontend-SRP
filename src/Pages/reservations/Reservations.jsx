@@ -1,29 +1,40 @@
 import React, { useState } from "react";
-import './PaymentState.css'
-import ModalPyState from "../../components/Modal/ModalPyState";
 import CreateButton from "../../components/Buttons/CreateButton";
-function PaymentState(){
+import './Reservations.css'
+import ModalReserva from "../../components/Modal/ModalReserva";
 
-    const [stateModalSet, setModalStateSet] = useState(false)
-    const [modalModeState, setModalModeState] = useState('create');
+function Reservations(){
 
-    const openModalPay = (modeState) => {
-        setModalModeState(modeState);
-        setModalStateSet(true);
+    const [stateModalResv, setModalStateResv] = useState(false)
+    const [modalModeResv, setModalModeResv] = useState('create');
+
+    const openModalResv = (modeResv) => {
+        setModalModeResv(modeResv);
+        setModalStateResv(true);
     };
-    
+
     return(
-        <>
+        <> 
             <div className="package-container">
                 <div className="container">
                     <div className="header-info">
                 </div>
                     <div className="content-info">
-                        <div className="content-top">
+                        <div className="content-top ">
                             <div className="options-left">
-                            <CreateButton text='Nuevo' openModalState={openModalPay} />
+                            <CreateButton text='Nuevo' openModalResv={openModalResv} />
                             </div>
-                            <div className="options-right">
+                            <div className="options-right reservations">
+                                <div className="reservations-search">
+                                    <input type="text" placeholder="Buscar reserva"/>
+                                    <div className="icon-search-reserva">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="ionicon" viewBox="0 0 512 512">
+                                            <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" strokeMiterlimit={10} strokeWidth={32} />
+                                            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeMiterlimit={10} strokeWidth={32} d="M338.29 338.29L448 448" />
+                                        </svg>
+                                    </div>
+                                </div>  
+                                <span className="spacer-reservations"></span>
                                 <div className="option-card">
                                     <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
                                         <path d="M7,0H4A4,4,0,0,0,0,4V7a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V4A4,4,0,0,0,7,0ZM9,7A2,2,0,0,1,7,9H4A2,2,0,0,1,2,7V4A2,2,0,0,1,4,2H7A2,2,0,0,1,9,4Z"/>
@@ -44,10 +55,17 @@ function PaymentState(){
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>N</th>
-                                            <th>Nombre</th>
-                                            <th>Descripcion</th>
-                                            <th>Opciones</th>
+                                            <th className="th-number-reser">N</th>
+                                            <th>Clinte</th>
+                                            <th>Telefono</th>
+                                            <th>Personas</th>
+                                            <th>Fecha</th>
+                                            <th>Hora</th>
+                                            <th>Paquete</th>
+                                            <th>Pago</th>
+                                            <th>Estado Pago</th>
+                                            <th>Asesor</th>
+                                            <th className="op-reservations">Opciones</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -56,27 +74,25 @@ function PaymentState(){
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Fly Especiales</td>
-                                            <td>Paquete parapente</td>
-                                            <td>
-                                                <div className="content-actions">
-                                                    <button className="ico-update-package" onClick={() => openModalPay('update')}>
-                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                                            <path d="M22.64 5.333c-0.287 0-0.575 0.109-0.794 0.329l-1.917 1.917 4.491 4.491 1.917-1.917c0.439-0.439 0.439-1.15 0-1.588l-2.903-2.904c-0.22-0.22-0.507-0.329-0.794-0.329zM18.245 9.263l-12.912 12.912v4.491h4.491l12.912-12.912-4.491-4.491z"></path>
+                                            <td className="th-number-reser">1</td>
+                                            <td>Christian Supo</td>
+                                            <td>934592245</td>
+                                            <td>2</td>
+                                            <td>12/10/2023</td>
+                                            <td>11:30:00</td>
+                                            <td>Fly Black</td>
+                                            <td>Yape</td>
+                                            <td>Adelanto</td>
+                                            <td>Christan</td>
+                                            <td className="op-reservations">
+                                                <div className="button-res-opera">
+                                                    <button className="icon-reser">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" width="512" height="512">
+                                                            <circle cx="12" cy="2.5" r="2.5"/>
+                                                            <circle cx="12" cy="12" r="2.5"/>
+                                                            <circle cx="12" cy="21.5" r="2.5"/>
                                                         </svg>
-                                                    </button>
-                                                    <button className="ico-delete-package">
-                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                                            <path d="M25.291 5.313v2.688h-18.624v-2.688h4.625l1.375-1.313h6.625l1.375 1.313h4.625zM7.979 25.312v-15.999h15.999v15.999c0 1.438-1.25 2.688-2.688 2.688h-10.625c-1.438 0-2.688-1.25-2.688-2.688h0.001z"></path>
-                                                        </svg>
-                                                    </button>
-                                                    <button className="ico-view-package">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="32" height="32">
-                                                            <path d="M23.821,11.181v0C22.943,9.261,19.5,3,12,3S1.057,9.261.179,11.181a1.969,1.969,0,0,0,0,1.64C1.057,14.739,4.5,21,12,21s10.943-6.261,11.821-8.181A1.968,1.968,0,0,0,23.821,11.181ZM12,18a6,6,0,1,1,6-6A6.006,6.006,0,0,1,12,18Z"/>
-                                                            <circle cx="12" cy="12" r="4"/>
-                                                        </svg>
-                                                    </button>
+                                                    </button>                           
                                                 </div>
                                             </td>
                                         </tr>
@@ -90,8 +106,8 @@ function PaymentState(){
                     </div>
                 </div>
             </div>
-            <ModalPyState statePay={stateModalSet} setStatePay={setModalStateSet} modePay={modalModeState}/>
+            <ModalReserva stateResv={stateModalResv} setStateResv={setModalStateResv} modeResv={modalModeResv}/> 
         </>
     )
 }
-export default PaymentState;
+export default Reservations;

@@ -5,22 +5,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(189, 185, 185);
+    background: rgba(226, 229, 234, 0.7);
     position: fixed;
     top: 0;
     left: 0;
 }
 .modal-state{
     width: 540px;
-    height: 400px;
-    border: 1px solid;
+    height: 385px;
+    border: 1px solid #D9DEE2;
     border-radius: 10px;
     transform: translateY(-60px);
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    background: #FFF;
+    background: #FFF; 
+    box-shadow: 0 5px 20px rgba(217,222,225,08);
 }
 .content-modal-state{
     width: 100%;
@@ -31,7 +32,7 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px 25px 25px 25px;
 }
 .content-body-state{
     width: 100%;
@@ -39,7 +40,7 @@
 }
 .header-state{
     width: 100%;
-    height: 25px;
+    height: 35px;
     /* background: orange; */
     display: flex;
     align-items: center;
@@ -48,21 +49,33 @@
 .title-state-pay{
     font-size: 20px;
 }
-.header-state ion-icon{
-    font-size: 30px;
-    transform: translateX(5px);
+.button-close-pay{
+    width: 35px;
+    height: 100%;
+    background: red;
+    border: none;
+    display: flex;
+    align-items: center;
+    background: #FFF;
+    transform: translateX(6px);
     cursor: pointer;
+}
+.button-close-pay svg{
+    width: 100%;
+    height: 100%;
 }
 .input-name-state{
     width: 100%;
     height: 42px;
-    background: green;
+    /* background: green; */
     position: relative;
-    margin-top: 35px;
+    margin-top: 30px;
 }
 .input-name-state input{
     width: 100%;
     height: 100%;
+    border: 1px solid #A0ACBA;
+    border-radius: 3px;
 }
 .title-name-state{
     position: absolute; 
@@ -73,7 +86,7 @@
 .input-description-state{
     width: 100%;
     height: 140px;
-    background: green;
+    /* background: green; */
     position: relative;
     margin-top: 35px;
 
@@ -82,6 +95,8 @@
     width: 100%;
     height: 100%;
     resize: none;
+    border: 1px solid #A0ACBA;
+    border-radius: 3px;
 }
 .title-description-state{
     position: absolute;
@@ -90,7 +105,7 @@
 }
 .futter-state{
     width: 100%;
-    height: 45px;
+    height: 42px;
     /* border: 1px solid; */
     display: flex;
     flex-direction: row-reverse;
@@ -103,4 +118,5 @@
 .button-cancel-state{
     width: 120px;
     height: 100%;
+    border: 1px solid #A0ACBA;
 }
