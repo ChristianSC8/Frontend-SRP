@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import CreateButton from "../../components/Buttons/CreateButton";
-import './Reservations.css'
+// import './Reservations.css'
 import ModalReserva from "../../components/Modal/ModalReserva";
 
-function Reservations(){
+function NewBooking(){
 
     const [stateModalResv, setModalStateResv] = useState(false)
     const [modalModeResv, setModalModeResv] = useState('create');
@@ -22,7 +22,7 @@ function Reservations(){
                     <div className="content-info">
                         <div className="content-top ">
                             <div className="options-left">
-                            {/* <CreateButton text='Nuevo' openModalResv={openModalResv} /> */}
+                            <CreateButton text='Nuevo' openModalResv={openModalResv} />
                             </div>
                             <div className="options-right reservations">
                                 <div className="reservations-search">
@@ -65,7 +65,7 @@ function Reservations(){
                                             <th>Pago</th>
                                             <th>Estado Pago</th>
                                             <th>Asesor</th>
-                                            <th className="op-reservations">Opciones</th>
+                                            <th className="new-booking">Opciones</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -84,15 +84,24 @@ function Reservations(){
                                             <td>Yape</td>
                                             <td>Adelanto</td>
                                             <td>Christan</td>
-                                            <td className="op-reservations">
-                                                <div className="button-res-opera">
-                                                    <button className="icon-reser">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" width="512" height="512">
-                                                            <circle cx="12" cy="2.5" r="2.5"/>
-                                                            <circle cx="12" cy="12" r="2.5"/>
-                                                            <circle cx="12" cy="21.5" r="2.5"/>
+                                            <td className="new-booking">
+                                                <div className="content-actions">
+                                                    <button className="ico-update-package" onClick={() => openModalResv('update')}>
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                                            <path d="M22.64 5.333c-0.287 0-0.575 0.109-0.794 0.329l-1.917 1.917 4.491 4.491 1.917-1.917c0.439-0.439 0.439-1.15 0-1.588l-2.903-2.904c-0.22-0.22-0.507-0.329-0.794-0.329zM18.245 9.263l-12.912 12.912v4.491h4.491l12.912-12.912-4.491-4.491z"></path>
                                                         </svg>
-                                                    </button>                           
+                                                    </button>
+                                                    <button className="ico-delete-package">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                                            <path d="M25.291 5.313v2.688h-18.624v-2.688h4.625l1.375-1.313h6.625l1.375 1.313h4.625zM7.979 25.312v-15.999h15.999v15.999c0 1.438-1.25 2.688-2.688 2.688h-10.625c-1.438 0-2.688-1.25-2.688-2.688h0.001z"></path>
+                                                        </svg>
+                                                    </button>
+                                                    <button className="ico-view-package">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="32" height="32">
+                                                            <path d="M23.821,11.181v0C22.943,9.261,19.5,3,12,3S1.057,9.261.179,11.181a1.969,1.969,0,0,0,0,1.64C1.057,14.739,4.5,21,12,21s10.943-6.261,11.821-8.181A1.968,1.968,0,0,0,23.821,11.181ZM12,18a6,6,0,1,1,6-6A6.006,6.006,0,0,1,12,18Z"/>
+                                                            <circle cx="12" cy="12" r="4"/>
+                                                        </svg>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -110,4 +119,4 @@ function Reservations(){
         </>
     )
 }
-export default Reservations;
+export default NewBooking;

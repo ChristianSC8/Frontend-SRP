@@ -97,7 +97,7 @@
     align-items: center;
     justify-content: center;
 }
-.input-icon svg{
+.input-icon svg{  
     width: 28px;
     height: 28px;
     color: #707070;
@@ -252,6 +252,7 @@
 .text-option{
     /* color: #000; */
     user-select: none;
+    white-space: nowrap;
 }
 .option:hover{
     background: #0A46D0;

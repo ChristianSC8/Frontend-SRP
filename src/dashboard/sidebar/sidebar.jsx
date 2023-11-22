@@ -7,12 +7,16 @@ function sidebar({isSidebarClose}){
 
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [isDropdowntwoOpen, setDropdowntwoOpen] = useState(false);
+    const [isDropdownRSOpen, setDropdownRSOpen] = useState(false);
 
     const toggleDropdown = () => {
       setDropdownOpen(!isDropdownOpen);
-    };
+    }; 
     const toggleDropdowntwo = () => {
         setDropdowntwoOpen(!isDropdowntwoOpen);
+    };
+    const toggleDropdownRS = () => {
+        setDropdownRSOpen(!isDropdownRSOpen);
     };
 
     return (
@@ -61,8 +65,9 @@ function sidebar({isSidebarClose}){
                                         <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Dashboard</span>
                                     </Link>
                                 </li>
-                                <li className="item">
-                                    <Link to={"reservations"}className="link">
+
+                                <li className="item " >
+                                    <a className="link" onClick={toggleDropdownRS}>
                                         <div className="link-icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="ionicon" viewBox="0 0 512 512">
                                                 <rect fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="32" x="48" y="80" width="416" height="384" rx="48" />
@@ -71,9 +76,55 @@ function sidebar({isSidebarClose}){
                                                 <path fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="32" strokeLinecap="round" d="M464 160H48" />
                                             </svg>
                                         </div>
-                                        <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Reserva</span>
-                                    </Link>
+                                        <div className="text-icon-rotate" >
+                                            <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Reserva</span>
+                                            <i className={`bx bx-chevron-right dropdown-open ${isDropdownRSOpen? 'rotate-icon' : ''}`}></i>
+                                        </div>
+                                    </a>
+                                    <div className={`dropdown ${isDropdownRSOpen ? 'active-dropdown' : ''} ${isSidebarClose ? 'dropdown ' : 'remov-margin'}`}>
+                                        <ul className={`dropdown-option ${isDropdownRSOpen ? 'visible-dropdown' : ''}`}>
+                                            <Link to={"newbooking"} className="option">
+                                                <div className="option-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path
+                                                        d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        strokeMiterlimit="10"
+                                                        strokeWidth="32"
+                                                    />
+                                                    <path
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="32"
+                                                        d="M256 176v160M336 256H176"
+                                                    />
+                                                    </svg>
+                                                </div>
+                                                <span className="text-option">Nueva reserva</span>
+                                            </Link>
+                                            <Link to={'reservations'} className="option">
+                                                <div className="option-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path
+                                                            d="M384 400.33l35.13-.33A29 29 0 00448 371.13V140.87A29 29 0 00419.13 112l-35.13.33M128 112l-36.8.33c-15.88 0-27.2 13-27.2 28.87v230.27c0 15.87 11.32 28.86 27.2 28.86L128 400M384 192v128M320 160v192M256 176v160M192 160v192M128 192v128"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth="32"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                                <p className="text-option">ADM Reservas</p>
+                                            </Link>
+                                        </ul>
+                                    </div>
                                 </li>
+
+                                
                                 <li className="item ">
                                     <Link to={'package'} className="link">
                                         <div className="link-icon">
@@ -85,6 +136,7 @@ function sidebar({isSidebarClose}){
                                         <span className={`link-text ${isSidebarClose ? 'link-text' : 'text-item-close'}`}>Paquetes</span>
                                     </Link>
                                 </li>
+                                
                                 {/* dropdoen */}
                                 <li className="item " >
                                     <a className="link" onClick={toggleDropdown}>
@@ -161,7 +213,7 @@ function sidebar({isSidebarClose}){
                                                 </div>
                                                 <span className="text-option">Tablero</span>
                                             </li>
-                                            <li className="option">
+                                            <Link to={'resrvreports'} className="option">
                                                 <div className="option-icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="ionicon" viewBox="0 0 512 512">
                                                         <rect fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="32" x="48" y="80" width="416" height="384" rx="48"/>
@@ -169,7 +221,7 @@ function sidebar({isSidebarClose}){
                                                     </svg>
                                                 </div>
                                                 <span className="text-option">Reservas</span>
-                                            </li>
+                                            </Link >
                                         </ul>
                                     </div>
                                 </li>

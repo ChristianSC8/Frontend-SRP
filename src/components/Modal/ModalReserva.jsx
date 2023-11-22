@@ -14,7 +14,7 @@ function ModalReserva({stateResv, setStateResv, modeResv}){
                 <div className="modal-container-reservations">
                     <div className="content-modal-reservat">
                         <div className="header-reservations">
-                            <span className="title-reservations">Nueva reserva</span>
+                        <span className="title-state-pay">{modeResv === 'create' ? 'Nuevo Paquete':'update'}</span>
                             <button className="butron-close-reser" onClick={closeModalResv}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                     <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M368 368L144 144M368 144L144 368"/>
