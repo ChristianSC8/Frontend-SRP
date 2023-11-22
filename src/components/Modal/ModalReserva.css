@@ -2,7 +2,7 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: center;  
     justify-content: center;
     position: fixed; 
     top: 0;
@@ -10,12 +10,12 @@
     background: rgba(226, 229, 234, 0.7);
 }
 .content-modal-reservat{
-    width: 1368px;
-    height: 850px;
+    width: 1200px;
+    height: 750px;
     border: 1px solid #D9DEE2;
     border-radius: 10px;
     background: #fff;
-    padding: 10px 25px 25px 25px;
+    padding: 10px 25px 0 25px;
     box-shadow: 0 5px 20px rgba(217,222,225,08);
     display: flex;
     flex-direction: column;
@@ -42,28 +42,35 @@
 }
 .content-reservations{
     width: 100%;
-    height: 100%;
+    height: calc(100% - 35px);
     /* background: green; */
-    padding: 0 15px;
+    /* padding: 0px 20px; */
+    display: flex;
+    flex-direction: column;
 }
 .reservations-img-inputs{
     width: 100%;
-    height: calc(100% - 42px);
-    background: blue;
+    height: calc(100% - 70px);
+    /* background: blue; */
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 40px;
 }
 .inputs-reservations{
     flex: 1;
     height: 100%;
-    background: orange;
-}
-.upload-images{
-    flex: 1;
+    /* background: orange; */
+    /* padding: 0 10px; */
+    width: 100%;
     height: 100%;
-    background: powderblue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 30px 0 50px 0;
 }
+
 .buttons-reservations{
     width: 100%;
     height: 42px;
@@ -71,7 +78,282 @@
     display: flex;
     flex-direction: row-reverse;
     gap: 20px;
+
 }
+.input-client-reserve{ 
+    width: 100%;
+    height: 42px;
+    /* background: red; */
+    position: relative;
+    /* margin-bottom: 30px; */
+}
+.input-client-reserve input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #A0ACBA;
+    border-radius: 3px;
+}
+.title-client-reserve{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+.input-email-client{ 
+    width: 100%;
+    height: 42px;
+    /* background: red; */
+    position: relative;
+    /* margin-bottom: 30px; */
+}
+.input-email-client input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #A0ACBA;
+    border-radius: 3px;
+}
+.title-email-client{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+
+
+
+
+.inputs-phone-peplo{
+    width: 100%;
+    height: 42px;
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    /* margin-bottom: 30px; */
+}
+.input-phone{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid; */
+    position: relative;
+}
+.input-phone input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #A0ACBA;
+    border-radius: 3px;
+}
+.title-phone{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+.input-peple{
+    width: 100%;
+    height: 42px;
+    /* background: red; */
+    position: relative;
+    /* margin-bottom: 30px; */
+}
+
+.input-peple input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #A0ACBA;
+    border-radius: 3px;
+}
+.title-peple{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+.input-pay-form{
+    width: 100%;
+    height: 42px;
+    /* background: red; */
+    border: 1px solid   ;
+    position: relative;
+    /* margin-bottom: 30px; */
+    background: white;
+}
+.title-pay-form{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+
+
+
+
+
+.inputs-statepay-add{
+    width: 100%;
+    height: 42px;
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    /* margin-bottom: 30px; */
+}
+.input-statepay{
+    flex: 3;
+    height: 100%;
+    border: 1px solid;
+    position: relative;
+    /* background: red; */
+}
+
+.title-statepay{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+.input-mony{
+    flex: 1;
+    height: 100%;
+    /* border: 1px solid; */
+    position: relative;
+    /* background: red; */
+}
+
+.input-mony input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #A0ACBA;
+    border-radius: 3px;
+}
+
+.title-mony{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+.input-package{
+    width: 100%;
+    height: 42px;
+    /* background: red; */
+    position: relative;
+    /* margin-bottom: 30px; */
+    background: white;
+    border: 1px solid;
+}
+.title-package{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+
+
+.inputs-date-hour{
+    width: 100%;
+    height: 42px;
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    /* margin-bottom: 30px; */
+}
+.input-date{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid; */
+    position: relative;
+}
+.input-date input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #A0ACBA;
+    border-radius: 3px;
+}
+.title-date{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+.input-hour{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid; */
+    position: relative;
+}
+.input-hour input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #A0ACBA;
+    border-radius: 3px;
+}
+.title-hour{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+.upload-images{
+    flex: 1;
+    height: 100%;
+    /* background: powderblue; */
+    padding: 30px 0 50px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dragged-drop{
+    width: 100%;
+    height: 221px;
+    /* background: red; */
+    position: relative;
+    /* margin-bottom: 30px; */
+    background: white;
+    border: 1px solid;
+}
+
+.title-draggeddrop{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+.content-img-draggd{
+    width: 100%;
+    height: calc(100% - 221px);
+    /* background: red;  */
+    border: 1px solid;
+    overflow-y:auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .button-save-reser{
     width: 120px;
     height: 100%;
@@ -95,7 +377,7 @@
     border: none;
     border: 1px solid #D9DEE2; 
 }
-@media (max-height: 850px) {
+/* @media (max-height: 850px) {
     .content-modal-reservat{
         width: 100%;
         height: 100%;
@@ -113,3 +395,23 @@
         padding: 0;
     }
   }
+
+
+  @media (max-width: 800px) {
+    .content-modal-reservat{
+        width: 100%;
+        height: 100%;
+        border: 1px solid #D9DEE2;
+        border-radius: 0;
+        background: #fff;
+        padding: 10px 25px 25px 25px;
+        box-shadow: 0 0 0 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .content-reservations{
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+  } */

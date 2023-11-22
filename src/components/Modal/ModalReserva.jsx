@@ -5,7 +5,7 @@ function ModalReserva({stateResv, setStateResv, modeResv}){
 
     const closeModalResv = () => {
         setStateResv(false);
-    };
+    };  
 
     return (
 
@@ -24,10 +24,69 @@ function ModalReserva({stateResv, setStateResv, modeResv}){
                         <form className="content-reservations">
                             <div className="reservations-img-inputs">
                                 <div className="inputs-reservations">
+                                    <div className="input-client-reserve">
+                                        <input type="text" />
+                                        <label className="title-client-reserve">Nombre cliente</label>
+                                    </div>
+
+                                    <div className="input-email-client">
+                                        <input type="text" />
+                                        <label className="title-email-client">Correo</label>
+                                    </div>
+
+                                    <div className="inputs-phone-peplo">
+                                        <div className="input-phone">
+                                            <input type="text"/>
+                                            <label className="title-phone">Precio</label>
+                                        </div>
+                                        <div className="input-peple">
+                                            <input type="text"/>
+                                            <label className="title-peple">Cantidad de pasajeros</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="input-pay-form">
+                                        {/* input-forma de pago */}
+                                        <label className="title-pay-form">Forma de pago</label>
+                                    </div>
+
+                                    <div className="inputs-statepay-add">
+                                        <div className="input-statepay">
+                                            {/* inpuut de estado pago */}
+                                            <label className="title-statepay">Estado pago</label>
+                                        </div>
+                                        <div className="input-mony">
+                                            <input type="text"/>
+                                            <label className="title-mony">Monto</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="input-package">
+                                        {/* input-forma de pago */}
+                                        <label className="title-package">Paquete parapente</label>
+                                    </div>
+
+
+                                    <div className="inputs-date-hour">
+                                        <div className="input-date">
+                                            <input type="text"/>
+                                            <label className="title-date">Fecha</label>
+                                        </div>
+                                        <div className="input-hour">
+                                            <input type="text"/>
+                                            <label className="title-hour">Hora</label>
+                                        </div>
+                                    </div>
 
                                 </div>
                                 <div className="upload-images">
-                                    
+                                    <div className="dragged-drop">
+                                        {/* input-forma de pago */}
+                                        <label className="title-draggeddrop">Combrobante</label>
+                                    </div>
+                                    <div className="content-img-draggd">
+                                        {/* imagenes cargadas */}
+                                    </div>
                                 </div>
                             </div>
                             <div className="buttons-reservations">
