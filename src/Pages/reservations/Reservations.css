@@ -1,4 +1,36 @@
+.view-today-res{
+    width: 100px;
+    height: 100%;
+    /* background: red; */
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+.content-today{ 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.icon-date-today{
+    width: 30px;
+    height: 30px;
+    /* background: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
 
+.content-today svg{
+    width: 22px;
+    height: 22px;
+}
+.title-today-res{
+    font-size: 18px;
+    transform: translateY(-1px);
+}
 .spacer-reservations{
     width: 2px;
     height: 30px;
@@ -39,6 +71,153 @@
     width: 28px;
     height: 28px;
 }
+.filter-reservations{
+    width: 120px;
+    height: 100%;
+    position: relative;
+}
+.butoon-filter-resvt{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    border: 1px solid #000;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.filte-icon-resv{
+    width: 30px;
+    height: 30px;
+    /* background:orange; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.filte-icon-resv svg{
+    width: 22px;
+    height: 22px;
+}
+.filter-text-res{
+    height: 30px;
+    font-size: 18px;
+    /* background: lightcoral; */
+    font-weight: 400;
+    transform: translateY(1px);
+}
+.fiter-garde-res{
+    width: 30px;
+    height: 30px; 
+    /* background: olive; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fiter-garde-res svg{
+    width: 20px;
+    height: 20px;
+}
+
+.svg-icon-filter{
+    transition: transform 0.2s ease;
+}
+.svg-icon-filter.fiter-active-icon{
+    transform: rotate(-180deg);
+}
+
+.modal-filter-rest{
+    width: 300px;
+    height: 0px;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    visibility: hidden;
+    opacity: 0;
+    transition: height 0.1s ease;
+    transition: top 0.2s ease-out;
+    border: 1px solid #E5E9F2;
+    box-shadow: 0 1px 8px rgba(217,222,225,08);
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.modal-filter-rest.active-filter{
+    height: 300px;
+    visibility: visible;
+    opacity: 1;
+    top: 50px;
+}
+.content-heaer-fiter{
+    width: 100%;
+    height: 121px;
+    /* background: orange; */
+    padding: 20px 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid #E5E9F2;
+}
+.fiter-with-dates{
+    width: 100%;
+    height: 40px;
+    /* background: lightseagreen; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.date-from{
+    flex: 1;
+    height: 100%;
+    /* background: red; */
+    border: 1px solid ;
+    position: relative;
+}
+.title-date-from{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+.spacer-date-filter{
+    width: 25px;
+    height: 2px;
+    background: gray;
+}
+.date-to{
+    flex: 1;
+    height: 100%;
+    /* background: blue; */
+    border: 1px solid;
+    position: relative;
+}
+.title-date-to{
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+.button-save-filter{
+    width: 100%;
+    height: 40px;
+    /* background: red; */
+}
+.filter-save{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #E5E9F2;
+    cursor: pointer;
+    border-radius: 3px;
+    background: #FFF;
+
+}
+.filter-save:hover{
+    background: #fff;
+}
 
 table tr .th-number-reser,
 table tr .th-number-reser{
@@ -58,6 +237,7 @@ table tr .op-reservations {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 .icon-reser{
     width: 22px;
@@ -74,4 +254,26 @@ table tr .op-reservations {
     width: 25px;
     height: 25px;
     padding: 2px;
+}
+.drop-options-resv{
+    width: 150px;
+    height: 1px;
+    position: absolute;
+    right: 35px;
+    top: 60px;
+    background: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease;
+    border: 1px solid #E5E9F2;
+    box-shadow: 0 1px 8px rgba(217,222,225,08);
+    border-radius: 5px;
+    padding: 10px 15px;
+    z-index: 100;
+}
+.drop-options-resv.open-modal-options{
+    height: 350px;
+    width: 250px;
+    visibility: visible;
+    opacity: 1;
 }

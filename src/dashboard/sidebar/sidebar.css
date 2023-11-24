@@ -1,7 +1,7 @@
 .component-header{
     height: 60px;
     display: flex;
-    align-items: center;
+    align-items: center; 
     gap: 8px;
     border-bottom: 1px solid #E5E9F2; 
     padding: 0 10px;

@@ -3,7 +3,7 @@ import react from "../../assets/react.svg";
 import { Link } from 'react-router-dom';
 import { useState } from 'react'; 
 
-function sidebar({isSidebarClose}){
+function sidebar({isSidebarClose}){ 
 
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [isDropdowntwoOpen, setDropdowntwoOpen] = useState(false);

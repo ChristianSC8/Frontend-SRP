@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import CreateButton from "../../components/Buttons/CreateButton";
-import './Reservations.css'
+import React, { useEffect, useState } from "react";
+import './Reservations.css' 
 import ModalReserva from "../../components/Modal/ModalReserva";
 
 function Reservations(){
@@ -12,6 +11,33 @@ function Reservations(){
         setModalModeResv(modeResv);
         setModalStateResv(true);
     };
+    // modal filter
+    const [isDropdownFilterOpen, setDropdownFilterOpen] = useState(false);
+    const toggleDropdownFilter = () => {
+        setDropdownFilterOpen(!isDropdownFilterOpen);
+    }; 
+    // modal options reservations
+    const [reservations, setReservations] = useState([]);
+    const [modalOptionsStates, setModalOptionsStates] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:5000/Estado")
+            .then(response => response.json())
+            .then(data => {
+                setReservations(data);
+
+                const initialStates = data.map(() => false);
+                setModalOptionsStates(initialStates);
+            })
+            .catch(error => console.error("Error fetching reservations data:", error));
+    }, []);
+
+    const toggleModalOptions = (index) => {
+        const newStates = [...modalOptionsStates];
+        newStates[index] = !newStates[index];
+        setModalOptionsStates(newStates);
+    };
+
 
     return(
         <> 
@@ -23,6 +49,43 @@ function Reservations(){
                         <div className="content-top ">
                             <div className="options-left">
                             {/* <CreateButton text='Nuevo' openModalResv={openModalResv} /> */}
+                                <div className="view-today-res">
+                                    <div className="content-today">
+                                        <div className="icon-date-today">
+                                           
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <rect
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="32"
+                                                    x="48"
+                                                    y="80"
+                                                    width="416"
+                                                    height="384"
+                                                    rx="48"
+                                                />
+                                                <path
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="32"
+                                                    strokeLinecap="round"
+                                                    d="M128 48v32M384 48v32"
+                                                />
+                                                <path
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="32"
+                                                    strokeLinecap="round"
+                                                    d="M464 160H48"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <span className="title-today-res">Hoy</span>
+                                    </div>
+                                </div>
                             </div>
                             <div className="options-right reservations">
                                 <div className="reservations-search">
@@ -34,6 +97,51 @@ function Reservations(){
                                         </svg>
                                     </div>
                                 </div>  
+                                <div className="filter-reservations">
+                                    <button className="butoon-filter-resvt" onClick={toggleDropdownFilter}>
+                                        <span className="filte-icon-resv">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path
+                                                    d="M35.4 87.12l168.65 196.44A16.07 16.07 0 01208 294v119.32a7.93 7.93 0 005.39 7.59l80.15 26.67A7.94 7.94 0 00304 440V294a16.07 16.07 0 014-10.44L476.6 87.12A14 14 0 00466 64H46.05A14 14 0 0035.4 87.12z"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="32"/>
+                                            </svg>
+                                        </span> 
+                                        <span className="filter-text-res">Filtro</span>
+                                        <span className="fiter-garde-res">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className={`svg-icon-filter ${isDropdownFilterOpen? 'fiter-active-icon' : ''}`} >
+                                                <path
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="48"
+                                                    d="M112 184l144 144 144-144"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </button>
+
+                                    <div className={`modal-filter-rest ${isDropdownFilterOpen ? 'active-filter' : ''}`} >
+                                        <div className="content-heaer-fiter">
+                                            <div className="fiter-with-dates">
+                                                <div className="date-from">
+                                                    <label className="title-date-from">Desde</label>
+                                                </div>
+                                                <span className="spacer-date-filter"></span>
+                                                <div className="date-to">
+                                                    <label className="title-date-to">Asta</label>
+                                                </div>
+                                            </div>
+                                            <div className="button-save-filter">
+                                                <button className="filter-save">Aceptar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <span className="spacer-reservations"></span>
                                 <div className="option-card">
                                     <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
@@ -73,29 +181,34 @@ function Reservations(){
                             <div className="table-content">
                                 <table>
                                     <tbody>
-                                        <tr>
-                                            <td className="th-number-reser">1</td>
-                                            <td>Christian Supo</td>
-                                            <td>934592245</td>
-                                            <td>2</td>
-                                            <td>12/10/2023</td>
-                                            <td>11:30:00</td>
-                                            <td>Fly Black</td>
-                                            <td>Yape</td>
-                                            <td>Adelanto</td>
-                                            <td>Christan</td>
-                                            <td className="op-reservations">
-                                                <div className="button-res-opera">
-                                                    <button className="icon-reser">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" width="512" height="512">
-                                                            <circle cx="12" cy="2.5" r="2.5"/>
-                                                            <circle cx="12" cy="12" r="2.5"/>
-                                                            <circle cx="12" cy="21.5" r="2.5"/>
-                                                        </svg>
-                                                    </button>                           
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        {reservations.map((reservation, index) => (
+                                            <tr key={index}>
+                                                <td className="th-number-reser">1</td>
+                                                <td>{reservation.nombre}</td>
+                                                <td>934592245</td>
+                                                <td>2</td>
+                                                <td>12/10/2023</td>
+                                                <td>11:30:00</td>
+                                                <td>Fly Black</td>
+                                                <td>Yape</td>
+                                                <td>Adelanto</td>
+                                                <td>Christan</td>
+                                                <td className="op-reservations">
+                                                    <div className="button-res-opera">
+                                                        <button className="icon-reser" onClick={() => toggleModalOptions(index)}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" width="512" height="512">
+                                                                <circle cx="12" cy="2.5" r="2.5"/>
+                                                                <circle cx="12" cy="12" r="2.5"/>
+                                                                <circle cx="12" cy="21.5" r="2.5"/>
+                                                            </svg>
+                                                        </button> 
+                                                        <div className={`drop-options-resv ${modalOptionsStates[index] ? 'open-modal-options' : ''}`}>
+                                                            
+                                                        </div>                          
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>
