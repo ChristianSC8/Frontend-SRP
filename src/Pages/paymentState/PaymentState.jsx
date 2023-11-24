@@ -1,41 +1,88 @@
-import React, { useState } from "react";
-import './PaymentState.css'
+import React, { useState, useEffect } from "react";
 import ModalPyState from "../../components/Modal/ModalPyState";
 import CreateButton from "../../components/Buttons/CreateButton";
-function PaymentState(){
+import axios from "axios";
 
-    const [stateModalSet, setModalStateSet] = useState(false)
+function PaymentState() {
+    const [stateModalSet, setModalStateSet] = useState(false);
     const [modalModeState, setModalModeState] = useState('create');
+    const [estados, setEstados] = useState([]);
+    const [newEstado, setNewEstado] = useState({
+        nombre: '',
+        descripcion: '',
+    });
+
+    useEffect(() => {
+        fetchEstados();
+    }, []);
+
+    const fetchEstados = async () => {
+        try {
+            const response = await axios.get("http://localhost:5000/estado");
+            setEstados(response.data);
+        } catch (error) {
+            console.error("Error fetching estados:", error);
+        }
+    };
 
     const openModalPay = (modeState) => {
         setModalModeState(modeState);
         setModalStateSet(true);
     };
-    
-    return(
+
+    const handleSaveEstado = async () => {
+        try {
+            if (!newEstado.nombre.trim() || !newEstado.descripcion.trim()) {
+                console.error("Nombre y descripción son campos obligatorios.");
+                return;
+            }
+
+            let response;
+
+            if (modalModeState === 'create') {
+                response = await axios.post("http://localhost:5000/estado", newEstado);
+                console.log("Nuevo estado de pago creado:", response.data);
+            } else {
+                const estadoId = obtenerIdDelEstado(); // Asegúrate de que tienes esta función definida
+                if (!estadoId) {
+                    console.error("No se pudo obtener el ID del estado para la actualización.");
+                    return;
+                }
+
+                response = await axios.put(`http://localhost:5000/estado/${estadoId}`, newEstado);
+                console.log("Estado de pago actualizado:", response.data);
+            }
+
+            // Limpiar el nuevo estado después de la creación/actualización
+            setNewEstado({ nombre: '', descripcion: '' });
+
+            // Esperar a que la operación se complete antes de actualizar la lista y cerrar el modal
+            await fetchEstados();
+
+            // Cierra el modal después de completar las operaciones
+            setModalStateSet(false);
+            console.log('newEstado después de cerrar el modal:', newEstado);
+        } catch (error) {
+            console.error("Error saving estado:", error);
+        }
+    };
+
+    return (
         <>
             <div className="package-container">
                 <div className="container">
-                    <div className="header-info">
-                </div>
+                    <div className="header-info"></div>
                     <div className="content-info">
                         <div className="content-top">
                             <div className="options-left">
-                            <CreateButton text='Nuevo' openModalState={openModalPay} />
+                                <CreateButton text='Nuevo' openModalState={() => openModalPay('create')} />
                             </div>
                             <div className="options-right">
                                 <div className="option-card">
-                                    <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
-                                        <path d="M7,0H4A4,4,0,0,0,0,4V7a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V4A4,4,0,0,0,7,0ZM9,7A2,2,0,0,1,7,9H4A2,2,0,0,1,2,7V4A2,2,0,0,1,4,2H7A2,2,0,0,1,9,4Z"/>
-                                        <path d="M20,0H17a4,4,0,0,0-4,4V7a4,4,0,0,0,4,4h3a4,4,0,0,0,4-4V4A4,4,0,0,0,20,0Zm2,7a2,2,0,0,1-2,2H17a2,2,0,0,1-2-2V4a2,2,0,0,1,2-2h3a2,2,0,0,1,2,2Z"/>
-                                        <path d="M7,13H4a4,4,0,0,0-4,4v3a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V17A4,4,0,0,0,7,13Zm2,7a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2H7a2,2,0,0,1,2,2Z"/>
-                                        <path d="M20,13H17a4,4,0,0,0-4,4v3a4,4,0,0,0,4,4h3a4,4,0,0,0,4-4V17A4,4,0,0,0,20,13Zm2,7a2,2,0,0,1-2,2H17a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2h3a2,2,0,0,1,2,2Z"/>
-                                    </svg>
+                                    {/* Iconos */}
                                 </div>
                                 <div className="option-list">
-                                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
-                                        <path d="M4.5,7A3.477,3.477,0,0,1,2.025,5.975L.5,4.62a1.5,1.5,0,0,1,2-2.24L4.084,3.794A.584.584,0,0,0,4.5,4a.5.5,0,0,0,.353-.146L8.466.414a1.5,1.5,0,0,1,2.068,2.172L6.948,6A3.449,3.449,0,0,1,4.5,7ZM24,3.5A1.5,1.5,0,0,0,22.5,2h-8a1.5,1.5,0,0,0,0,3h8A1.5,1.5,0,0,0,24,3.5ZM6.948,14l3.586-3.414A1.5,1.5,0,0,0,8.466,8.414l-3.613,3.44a.5.5,0,0,1-.707,0L2.561,10.268A1.5,1.5,0,0,0,.439,12.39l1.586,1.585A3.5,3.5,0,0,0,6.948,14ZM24,11.5A1.5,1.5,0,0,0,22.5,10h-8a1.5,1.5,0,0,0,0,3h8A1.5,1.5,0,0,0,24,11.5ZM6.948,22l3.586-3.414a1.5,1.5,0,0,0-2.068-2.172l-3.613,3.44A.5.5,0,0,1,4.5,20a.584.584,0,0,1-.416-.206L2.5,18.38a1.5,1.5,0,0,0-2,2.24l1.523,1.355A3.5,3.5,0,0,0,6.948,22ZM24,19.5A1.5,1.5,0,0,0,22.5,18h-8a1.5,1.5,0,0,0,0,3h8A1.5,1.5,0,0,0,24,19.5Z"/>
-                                    </svg>
+                                    {/* Iconos */}
                                 </div>
                             </div>
                         </div>
@@ -55,11 +102,12 @@ function PaymentState(){
                             <div className="table-content">
                                 <table>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Fly Especiales</td>
-                                            <td>Paquete parapente</td>
-                                            <td>
+                                        {estados.map((estado, index) => (
+                                            <tr key={estado.id}>
+                                                <td>{index + 1}</td>
+                                                <td>{estado.nombre}</td>
+                                                <td>{estado.descripcion}</td>
+                                                <td>
                                                 <div className="content-actions">
                                                     <button className="ico-update-package" onClick={() => openModalPay('update')}>
                                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -78,20 +126,29 @@ function PaymentState(){
                                                         </svg>
                                                     </button>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <div className="content-button">
                             <span>pagination</span>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
-            <ModalPyState statePay={stateModalSet} setStatePay={setModalStateSet} modePay={modalModeState}/>
+            <ModalPyState
+                statePay={stateModalSet}
+                setStatePay={setModalStateSet}
+                modePay={modalModeState}
+                onSaveEstado={handleSaveEstado}
+                newEstado={newEstado}
+                setNewEstado={setNewEstado} // Asegúrate de pasar setNewEstado
+            />
         </>
-    )
+    );
 }
+
 export default PaymentState;

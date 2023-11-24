@@ -22,7 +22,7 @@ function Reservations(){
                     <div className="content-info">
                         <div className="content-top ">
                             <div className="options-left">
-                            {/* <CreateButton text='Nuevo' openModalResv={openModalResv} /> */}
+                            <CreateButton text='Nuevo' openModalResv={openModalResv} />
                             </div>
                             <div className="options-right reservations">
                                 <div className="reservations-search">

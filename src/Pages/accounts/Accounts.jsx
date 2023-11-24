@@ -1,15 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import CreateButton from "../../components/Buttons/CreateButton";
 import ModalPyMethods from "../../components/Modal/ModalPyMethods";
+import './Accounts.css'
+import Swal from "sweetalert2";
+import AccountCard from "../../components/Modal/AccountCard";
 
 function Accounts(){
 
     const [stateModalMtd, setModalStateMtd] = useState(false)
     const [modalMtd, setModalMtd] = useState('create');
+    const [accounts, setAccounts] = useState([]);
+    const [editingAccount, setEditingAccount] = useState(null);
+    const [viewAccount, setViewAccount] = useState(null);
 
-    const openModalMethod = (modeMtd) => {
+    const openModalMethod = (modeMtd, account) => {
         setModalMtd(modeMtd);
+        setEditingAccount(account);
         setModalStateMtd(true);
+    };
+
+    useEffect(() => {
+        const fetchAccounts = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/formapago');
+                setAccounts(response.data); // Fix the typo here
+            } catch (error) {
+                console.error('Error al obtener la lista de paquetes:', error);
+            }
+        };
+
+        fetchAccounts();
+    }, []);
+    const isMountedRef = useRef(true);
+
+    useEffect(() => {
+        return () => {
+            // Al desmontar el componente, actualiza el ref
+            isMountedRef.current = false;
+        };
+    }, []);
+
+    const handleDeleteAccount = async (id, imagePath) => {
+        try {
+            const result = await Swal.fire({
+                title: "¿Estás seguro?",
+                text: "¡No podrás revertir esto!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, eliminarlo",
+            });
+
+            if (result.isConfirmed) {
+                // Si el usuario confirma, procede con la eliminación
+                await axios.delete(`http://localhost:5000/formapago/${id}`);
+
+                // Actualiza la lista después de eliminar
+                const response = await axios.get('http://localhost:5000/formapago');
+                setAccounts(response.data);
+
+                Swal.fire("Eliminado", "El paquete ha sido eliminado.", "success");
+            }
+        } catch (error) {
+            console.error("Error al eliminar el paquete:", error);
+        }
+    };
+
+    const updateAccountsList = async (newAccount) => {
+        // Actualizar la lista de paquetes después de crear o editar
+        if (modalMtd === 'create') {
+            setAccounts((prevAccounts) => [...prevAccounts, newAccount]);
+        } else if (modalMtd === 'edit' && editingAccount) {
+            // Si es una edición, reemplazar el paquete editado en la lista
+            setAccounts((prevAccounts) =>
+                prevAccounts.map((account) => (account.id === editingAccount.id ? newAccount : account))
+            );
+        }
     };
 
     return (
@@ -55,39 +123,49 @@ function Accounts(){
                             <div className="table-content">
                                 <table>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>
-                                                <div className="img-package">
-                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0ac1jJl733ccE87JCYvKblAlKvfSe_7W3x68lY38OFj4L2qyl8M7LHKSuOb2Ys_sO-eo&usqp=CAU" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>Fly Especiales</td>
-                                            <td>Paquete parapente</td>
-                                            <td>Activo</td>
-                                            <td>48359385793845</td>
-                                            <td>4353535453453543534</td>
-                                            <td>
+                                    {accounts.map((account, index) => (
+                                            <tr key={index}>
+                                                <td className="th-number-account">{index + 1}</td>
+                                                <td>
+                                                    <div className="img-account">
+                                                        <img src={account.urlImagen} alt="" />
+                                                    </div>
+                                                </td>
+                                                <td>{account.nombre}</td>
+                                                <td>{account.descripcion}</td>
+                                                <td>{account.estado ? 'Activo' : 'Inactivo'}</td>
+                                                <td>{account.numero}</td>
+                                                <td>{account.cci}</td>
+                                                <td className="op-">
                                                 <div className="content-actions">
-                                                    <button className="ico-update-package" onClick={() => openModalMethod('update')}>
-                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                                            <path d="M22.64 5.333c-0.287 0-0.575 0.109-0.794 0.329l-1.917 1.917 4.491 4.491 1.917-1.917c0.439-0.439 0.439-1.15 0-1.588l-2.903-2.904c-0.22-0.22-0.507-0.329-0.794-0.329zM18.245 9.263l-12.912 12.912v4.491h4.491l12.912-12.912-4.491-4.491z"></path>
-                                                        </svg>
-                                                    </button>
-                                                    <button className="ico-delete-package">
+                                                <button
+                                                            className="ico-update-package"
+                                                            onClick={() => openModalMethod('edit', account)}
+                                                        >
+                                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                                                <path d="M22.64 5.333c-0.287 0-0.575 0.109-0.794 0.329l-1.917 1.917 4.491 4.491 1.917-1.917c0.439-0.439 0.439-1.15 0-1.588l-2.903-2.904c-0.22-0.22-0.507-0.329-0.794-0.329zM18.245 9.263l-12.912 12.912v4.491h4.491l12.912-12.912-4.491-4.491z"></path>
+                                                            </svg>
+                                                        </button>
+                                                    <button 
+                                                    className="ico-delete-package"
+                                                    onClick={() => handleDeleteAccount(account.id, account.imagen)}>
                                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                                                             <path d="M25.291 5.313v2.688h-18.624v-2.688h4.625l1.375-1.313h6.625l1.375 1.313h4.625zM7.979 25.312v-15.999h15.999v15.999c0 1.438-1.25 2.688-2.688 2.688h-10.625c-1.438 0-2.688-1.25-2.688-2.688h0.001z"></path>
                                                         </svg>
                                                     </button>
-                                                    <button className="ico-view-package">
+                                                    <button
+                                                className="ico-view-package"
+                                                onClick={() => setViewAccount(account)}
+                                            >
                                                     <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="32" height="32">
                                                         <path d="M23.821,11.181v0C22.943,9.261,19.5,3,12,3S1.057,9.261.179,11.181a1.969,1.969,0,0,0,0,1.64C1.057,14.739,4.5,21,12,21s10.943-6.261,11.821-8.181A1.968,1.968,0,0,0,23.821,11.181ZM12,18a6,6,0,1,1,6-6A6.006,6.006,0,0,1,12,18Z"/>
                                                         <circle cx="12" cy="12" r="4"/>
                                                         </svg>
                                                     </button>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>
@@ -101,7 +179,10 @@ function Accounts(){
             </div>
 
             {/* <ModalPackage state={stateModal} setState={setModalState} mode={modalMode}/> */}
-            <ModalPyMethods stateMtd={stateModalMtd} setStateMtd={setModalStateMtd} mtdmode={modalMtd}/>
+            <ModalPyMethods stateMtd={stateModalMtd} setStateMtd={setModalStateMtd} mtdmode={modalMtd} accountActual={editingAccount} updateAccountsList={updateAccountsList}/>
+            {viewAccount && (
+                <AccountCard account={viewAccount} onClose={() => setViewAccount(null)} />
+            )}
         </>
     );
 }
